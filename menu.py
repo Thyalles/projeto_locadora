@@ -182,7 +182,7 @@ def preencher_nascionalidade():
 
     while True:
         try:
-            validar = int(input(f'Confirma que a categoria da CNH?\n{nascionalidade}\n1-Sim\n2-Não\n'))
+            validar = int(input(f'Confirma a sua nascionalidade?\n{nascionalidade}\n1-Sim\n2-Não\n'))
 
             match validar:
                 case 1:
@@ -223,11 +223,17 @@ def preencher_endereco():
 
             match validar:
                 case 1:
-                    print("Endereço salvo!")
-                    ################################################
-                    #fazer o tratamento para voltar com formato json
-                    ################################################
-                    break #enquanto nao coloca o return
+                    endereco = {
+                        "RUA": endereco_rua,
+                        "NUMERO": endereco_numero,
+                        "COMPLEMENTO": endereco_complemento,
+                        "BAIRRO": endereco_bairro,
+                        "CIDADE": endereco_cidade,
+                        "ESTADO": endereco_estado,
+                        "CEP": endereco_cep
+                    }
+
+                    return endereco
 
                 case 2:
                     preencher_endereco()
@@ -256,11 +262,12 @@ def preencher_telefone():
 
                         match validar:
                             case 1:
-                                print("Celular salvo!")
-                                ################################################
-                                #fazer o tratamento para voltar com formato json
-                                ################################################
-                                break #enquanto nao coloca o return
+                                telefone = {
+                                    "DDD": ddd,
+                                    "CELULAR": celular
+                                }
+
+                                return telefone
 
                             case 2:
                                 preencher_telefone()
@@ -333,7 +340,7 @@ def preencher_cnh():
         if len(numero_cnh) == 11 and numero_cnh.isdigit():
             while True:
                 try:
-                    validar = int(input(f'Confirma seu CPF?\n{numero_cnh}\n1-Sim\n2-Não\n'))
+                    validar = int(input(f'Confirma o número da sua CNH?\n{numero_cnh}\n1-Sim\n2-Não\n'))
 
                     match validar:
                         case 1:
@@ -379,23 +386,39 @@ def preencher_validade_cnh():
                 if (datetime.now().month == validade_cnh.month)and(datetime.now().day >= validade_cnh.day):
                     print("Sua carteira venceu!")
                     carteira_status = False
-                    return validade_formatada, carteira_status
+                    validade = {
+                        "VALIDADE": validade_formatada,
+                        "CARTEIRA_STATUS": carteira_status
+                    }
+                    return validade
 
                 elif (datetime.now().month == validade_cnh.month)and(datetime.now().day < validade_cnh.day):
                     print("Sua carteira vence esse mês!")
                     carteira_status = False
-                    return validade_formatada, carteira_status
+                    validade = {
+                        "VALIDADE": validade_formatada,
+                        "CARTEIRA_STATUS": carteira_status
+                    }
+                    return validade
 
                 else:
                     meses = validade_cnh.month - datetime.now().month
                     print(f'Sua carteira vence em {meses} mese(s).')
                     carteira_status = True
-                    return validade_formatada, carteira_status
+                    validade = {
+                        "VALIDADE": validade_formatada,
+                        "CARTEIRA_STATUS": carteira_status
+                    }
+                    return validade
             else:
                 print(f'validade da carteira vence em {anos} anos!')
                 carteira_status = True
 
-                return validade_formatada, carteira_status            
+                validade = {
+                        "VALIDADE": validade_formatada,
+                        "CARTEIRA_STATUS": carteira_status
+                    }
+                return validade            
 
         except:
              print("Formato de data inválido! Por favor, use o formato DDMMAAAA.")
@@ -422,6 +445,24 @@ def preencher_categoria_cnh():
         except:
             print("Formato invalido! Por favor, insira 1 ou 2.")
 
+
+# Preencher senha de Login
+def preencher_senha():
+
+    senha = input("Insira uma senha de 8 digitos(apenas números!): ")
+
+    if len(senha)==8 and senha.isdigit():
+        senha2 = input("Insira novamente a mesma senha: ")
+        if senha == senha2:
+            print("Senha cadastrada")
+            return senha
+        else:
+            print("senhas diferentes!")
+            preencher_senha()
+    else:
+        print("Senha invalida! Por favor, use apenas 8 digitos!")
+        preencher_senha()
+
     
 # Cadastrando os dados do cliente
 def cadastrar_cliente():
@@ -436,6 +477,8 @@ def cadastrar_cliente():
     rg = preencher_rg()
 
     nascionalidade = preencher_nascionalidade()
+
+    senha = preencher_senha()
 
     
     # Endereço
@@ -455,8 +498,30 @@ def cadastrar_cliente():
     
     categoria_cnh = preencher_categoria_cnh()
 
+ 
+    # Criando o dicionario com as informações preenchidas pelo usuario
+    dic_cadastrar_cliente = {
+        cpf:{
+            "NOME": nome_completo,
+            "DATA_NASCIMENTO" : data_nascimento,
+            "CPF" : cpf,
+            "RG" : rg,
+            "NASCIONALIDADE" : nascionalidade,
+            "SENHA" : senha,
+            "ENDERECO" : endereco,
+            "TELEFONE" : telefone,
+            "MAIL" : mail,
+            "NUMERO_CNH" : numero_cnh,
+            "VALIDADE_CNH" : validade_cnh,
+            "CATEGORIA_CNH" : categoria_cnh
+        }
+    }
 
-
+    # Criando o objeto 
+    obj_json = json.dumps(dic_cadastrar_cliente, indent=4)
+    # Criando o arquivo com o json e salvando
+    with open ("cliente.json" , "w") as file:
+        file.write(obj_json)
 
 
 
@@ -472,12 +537,8 @@ def menu_cliente():
                 ######################################
                 print("Logado")
             case 2:
-
                 cadastrar_cliente()
-                ###############################################
-                #abrir os inputs para cadastrar um novo cliente
-                ###############################################
-                print("Cadastrado")
+                print("Cadastrado com sucesso!")
             case 3:
                 os.system('cls')
                 print("Voltando ao menu anterior!")
