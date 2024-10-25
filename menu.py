@@ -523,7 +523,8 @@ def cadastrar_cliente():
     with open ("cliente.json" , "w") as file:
         file.write(obj_json)
 
-
+    print("Cadastrado com sucesso!")
+    menu_cliente()
 
 # Menu do cliente caso deseja fazer login ou cadastrar-se
 def menu_cliente():
@@ -538,7 +539,7 @@ def menu_cliente():
                 print("Logado")
             case 2:
                 cadastrar_cliente()
-                print("Cadastrado com sucesso!")
+                
             case 3:
                 os.system('cls')
                 print("Voltando ao menu anterior!")
