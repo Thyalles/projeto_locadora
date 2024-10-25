@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from datetime import datetime
 
 # Caso insira uma opcao invalida, o usuario precisara aperta 
@@ -8,8 +9,8 @@ def opcao_invalida_principal():
     print("Opção Invalida!")
     input("Digite uma tecla para voltar ao menu\n")
 
-#cadastrando e validando o nome completo do cliente
-def cadastrar_nome_cliente():     
+# Preenchendo o nome completo do cliente
+def preencher_nome_cliente():     
 
     nome = input("Informe seu nome completo\n")
     
@@ -30,8 +31,8 @@ def cadastrar_nome_cliente():
             print("Formato invalido! Por favor, insira 1 ou 2.")
 
 
-# Cadastrando e validando a data de nascimento e idade do cliente
-def cadastrar_data_nascimento():
+# Preenchendo a data de nascimento e idade do cliente
+def preencher_data_nascimento():
     while True:
 
         data = input("Infome sua data de nascimento(ddmmaaaa): (apenas números!)\n")
@@ -39,7 +40,6 @@ def cadastrar_data_nascimento():
         # Confirma se foi digitado apenas numeros e tem 8 digitos de entrada
         if len(data) == 8 and data.isdigit():
             data_formatada = f"{data[:2]}/{data[2:4]}/{data[4:]}"
-            print(data_formatada)
         else:
             print("Formato de data inválido! Por favor, use o formato DDMMAAAA.")
             continue
@@ -69,7 +69,7 @@ def cadastrar_data_nascimento():
                         case 1:
                             return data_formatada
                         case 2:
-                            cadastrar_data_nascimento()
+                            preencher_data_nascimento()
                         case __:
                             print("Opção invalida!")
                             continue
@@ -78,19 +78,384 @@ def cadastrar_data_nascimento():
                     print("Formato invalido! Por favor, insira 1 ou 2.")
         
         except:
-            print("Formato de data inválido! Por favor, use o formato DDMMAAAA.222")
+            print("Formato de data inválido! Por favor, use o formato DDMMAAAA.")
 
 
+# verificando o CPF
+def verificar_cpf(cpf):
+    aux = 10
+    soma_d1 = soma_d2 = 0
+    d1 = d2 = 0
+    nome_cpf_d1 = cpf[:9]
+    nome_cpf_d2 = cpf[:10]
+
+    for i in nome_cpf_d1:     
+        soma_d1 = soma_d1 + (int(i)* aux)
+        aux-=1
+ 
+    if((soma_d1%11)<2):
+        d1 = 0
+    else:
+        d1 = 11-(soma_d1%11)
+
+    aux = 11
+
+    for i in nome_cpf_d2:
+        soma_d2 = soma_d2 + (int(i)*aux)
+        aux-=1
+
+    if((soma_d2%11)<2):
+        d2 = 0
+    else:
+        d2 = 11-(soma_d2%11)
+
+    digitos = str(d1) + str(d2)
+    cpf_digitos = cpf[9:]
+    
+    if(digitos == cpf_digitos):        
+        return True
+    
+
+# Preenchendo o CPF
+def preencher_cpf():
+    while True:
         
+        cpf = input("Infome seu CPF: (apenas números!)\n")
+        
+        if len(cpf) == 11 and cpf.isdigit(): 
+            while True:
+                try:
+                    validar = int(input(f'Confirma seu CPF?\n{cpf}\n1-Sim\n2-Não\n'))
 
-# Cadastrando os dados do cliente
-def cadastrar_cliente():
+                    match validar:
+                        case 1:
+                            if(verificar_cpf(cpf)):
+                                print("CPF Valido!")
+                                return cpf
+                            else:
+                                print("CPF invalido!")
+                                break
+                        case 2:
+                            break
+                        case __:
+                            print("Opção invalida!")
 
-    nome_completo = cadastrar_nome_cliente()
+                except:
+                    print("Formato invalido! Por favor, insira 1 ou 2.")          
+            
+        else:
+            print("CPF inválido! Por favor, use apenas 11 digitos.")
+            
 
-    data_nascimento = cadastrar_data_nascimento()
+# Preenchendo o RG
+def preencher_rg():
+    while True:
+
+        rg = input("Infome seu RG: (apenas números!)\n")
+
+        # Algumas identidades podem conter de 7 a 9 digitos, incluindo letra
+        if len(rg) == 9 or len(rg) == 8 or len(rg) == 7:
+            while True:
+                try:
+                    validar = int(input(f'Confirma seu RG?\n{rg}\n1-Sim\n2-Não\n'))
+
+                    match validar:
+                        case 1:
+                            print("RG Valido!")
+                            return rg
+                        case 2:
+                            break
+                        case __:
+                            print("Opção invalida!")
+
+                except:
+                    print("Formato invalido! Por favor, insira 1 ou 2.")  
+        
+        else:
+            print("RG inválido! Por favor, use apenas 9 digitos.")
+
+
+# Preencher a Nascionalidade
+def preencher_nascionalidade():
+
+    nascionalidade = input("Informe a sua nascionalidade: ")
+
+    while True:
+        try:
+            validar = int(input(f'Confirma que a categoria da CNH?\n{nascionalidade}\n1-Sim\n2-Não\n'))
+
+            match validar:
+                case 1:
+                    return nascionalidade
+                case 2:
+                     nascionalidade = input("Informe a sua nascionalidade: ")
+                case __:
+                    print("Opção invalida!")
+                    continue
+        
+        except:
+            print("Formato invalido! Por favor, insira 1 ou 2.")
+
+
+# Preenchendo endereco
+def preencher_endereco():
+    print("Endereço\n")
+    while True:
+
+        endereco_rua = input("Rua: ")
+        endereco_numero = input("Número: ")
+        endereco_complemento = input("Complemento(caso necessario): ")
+        endereco_bairro = input("Bairro: ")
+        endereco_cidade = input("Cidade: ")
+        endereco_estado = input("Estado: ")
+        endereco_cep = input("CEP: ")
+
+        try:
+            os.system('cls')
+            print(f'Rua: {endereco_rua}')
+            print(f'Numero: {endereco_numero}')
+            print(f'Complemento: {endereco_complemento}')
+            print(f'Bairro: {endereco_bairro}')
+            print(f'Cidade: {endereco_cidade}')
+            print(f'Estado: {endereco_estado}')
+            print(f'CEP: {endereco_cep}')
+            validar = int(input('Confirma seu ENDEREÇO?\n1-Sim\n2-Não\n'))
+
+            match validar:
+                case 1:
+                    print("Endereço salvo!")
+                    ################################################
+                    #fazer o tratamento para voltar com formato json
+                    ################################################
+                    break #enquanto nao coloca o return
+
+                case 2:
+                    preencher_endereco()
+                case __:
+                    print("Opção invalida!")
+        except:
+            print("Formato invalido! Por favor, insira 1 ou 2.") 
+
+
+# Preenchendo o telefone
+def preencher_telefone():
+
+    ddd = input("DDD(três digitos): ")
+    
+    if len(ddd) == 3 and ddd.isdigit():
+        while True:
+            celular = input("Celular: ")
+
+            if(len(celular) == 8 or len(celular) == 9) and celular.isdigit():
+                while True:
+                    try:    
+                        os.system('cls')
+                        print(f'DDD: {ddd}')
+                        print(f'Celular: {celular}')
+                        validar = int(input('Confirma seu Celular?\n1-Sim\n2-Não\n'))
+
+                        match validar:
+                            case 1:
+                                print("Celular salvo!")
+                                ################################################
+                                #fazer o tratamento para voltar com formato json
+                                ################################################
+                                break #enquanto nao coloca o return
+
+                            case 2:
+                                preencher_telefone()
+                            case __:
+                                print("Opção invalida!")
+
+                    except:
+                        print("Formato invalido! Por favor, insira 1 ou 2.") 
+
+                break # break para sair do loop primeiro loop
+
+            else:
+                print("Apenas digitos para o número do celular!")
+
+    else:
+        print("DDD informado não possui 3 digitos")
+        preencher_telefone()
+
+
+#Preencher o Email
+def preencher_email():
+
+    mail = input("Infome seu EMAIL: \n")
+
+    while True:
+        try:
+            validar = int(input(f'Confirma seu e-mail?\n{mail}\n1-Sim\n2-Não\n'))
+
+            match validar:
+                case 1:
+                    print("Email salvo!")
+                    return mail
+                case 2:
+                    mail = input("Infome seu EMAIL: \n")
+                case __:
+                    print("Opção invalida!")
+
+        except:
+            print("Formato invalido! Por favor, insira 1 ou 2.")
+
+
+# Verificando o número da CNH
+def verificar_cnh(cnh):
+    aux = 11
+    soma_dv = 0
+    dv = 0
+
+    for i in cnh:
+        soma_dv = soma_dv + (int(i) * aux)
+        aux-=1
+
+    if (soma_dv%11)>1:
+        dv = 11-(soma_dv%11)
+    else:
+        dv = 0
+
+    digito = cnh[10:]
+    digito_cnh = str(dv)   
+
+    if(digito == digito_cnh):
+        return True
+
+
+# Preencher o número da CNH
+def preencher_cnh():
+    while True:
+
+        numero_cnh = input("Infome seu número da CNH: (apenas números!)\n")
+
+        if len(numero_cnh) == 11 and numero_cnh.isdigit():
+            while True:
+                try:
+                    validar = int(input(f'Confirma seu CPF?\n{numero_cnh}\n1-Sim\n2-Não\n'))
+
+                    match validar:
+                        case 1:
+                            if(verificar_cnh(numero_cnh)):
+                                print("Número da CNH Valido!")
+                                return numero_cnh
+                            else:
+                                print("Número da CNH invalido!")
+                                break
+                        case 2:
+                            break
+                        case __:
+                            print("Opção invalida!")
+
+                except:
+                    print("Formato invalido! Por favor, insira 1 ou 2.") 
+
+        else:
+            print("Número da CNH invalido! Por favor, use apenas 11 digitos.")
+
+
+# Preencher a válidade da CNH
+def preencher_validade_cnh():
+    while True:
+        carteira_status = False
+
+        validade = input("Infome a data de validade da CNH(ddmmaaaa): (apenas números!)\n")
+
+        if len(validade) == 8 and validade.isdigit():
+            validade_formatada = f"{validade[:2]}/{validade[2:4]}/{validade[4:]}"
+        else:
+            print("Formato de data inválido! Por favor, use o formato DDMMAAAA.")
+            continue
+
+        try:
+            # Converte a data formatada para o formato da biblioteca DATETIME
+            validade_cnh = datetime.strptime(validade_formatada, f"%d/%m/%Y")
+
+            # calcula quantos anos tem para vencer a carteira
+            anos = validade_cnh.year - datetime.now().year
+
+            if anos < 1:
+                if (datetime.now().month == validade_cnh.month)and(datetime.now().day >= validade_cnh.day):
+                    print("Sua carteira venceu!")
+                    carteira_status = False
+                    return validade_formatada, carteira_status
+
+                elif (datetime.now().month == validade_cnh.month)and(datetime.now().day < validade_cnh.day):
+                    print("Sua carteira vence esse mês!")
+                    carteira_status = False
+                    return validade_formatada, carteira_status
+
+                else:
+                    meses = validade_cnh.month - datetime.now().month
+                    print(f'Sua carteira vence em {meses} mese(s).')
+                    carteira_status = True
+                    return validade_formatada, carteira_status
+            else:
+                print(f'validade da carteira vence em {anos} anos!')
+                carteira_status = True
+
+                return validade_formatada, carteira_status            
+
+        except:
+             print("Formato de data inválido! Por favor, use o formato DDMMAAAA.")
+
+
+# Preencher a categoria da CNH
+def preencher_categoria_cnh():
+
+    categoria = input("Informe a categoria de sua CNH: ")
+
+    while True:
+        try:
+            validar = int(input(f'Confirma que a categoria da CNH?\n{categoria}\n1-Sim\n2-Não\n'))
+
+            match validar:
+                case 1:
+                    return categoria
+                case 2:
+                     categoria = input("Informe a categoria de sua CNH: ")
+                case __:
+                    print("Opção invalida!")
+                    continue
+        
+        except:
+            print("Formato invalido! Por favor, insira 1 ou 2.")
 
     
+# Cadastrando os dados do cliente
+def cadastrar_cliente():
+    
+    # Informações Pessoais    
+    nome_completo = preencher_nome_cliente()
+
+    data_nascimento = preencher_data_nascimento()
+    
+    cpf = preencher_cpf()
+
+    rg = preencher_rg()
+
+    nascionalidade = preencher_nascionalidade()
+
+    
+    # Endereço
+    endereco = preencher_endereco()
+
+    
+    # Contatos
+    telefone = preencher_telefone()
+
+    mail = preencher_email()
+
+
+    # Carteira de habilitação
+    numero_cnh = preencher_cnh()
+    
+    validade_cnh = preencher_validade_cnh()
+    
+    categoria_cnh = preencher_categoria_cnh()
+
+
 
 
 
