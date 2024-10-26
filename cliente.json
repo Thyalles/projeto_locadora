@@ -1,0 +1,30 @@
+{
+    "04842167408": {
+        "NOME": "Thyalles Campos",
+        "DATA_NASCIMENTO": "04/03/1994",
+        "CPF": "09876543211",
+        "RG": "8999777",
+        "NASCIONALIDADE": "BR",
+        "SENHA": "88888888",
+        "ENDERECO": {
+            "RUA": "aaaaaaaaaa",
+            "NUMERO": "3333",
+            "COMPLEMENTO": "",
+            "BAIRRO": "cs",
+            "CIDADE": "rec",
+            "ESTADO": "pe",
+            "CEP": "12312323"
+        },
+        "TELEFONE": {
+            "DDD": "333",
+            "CELULAR": "44433322"
+        },
+        "MAIL": "thy@aaa",
+        "NUMERO_CNH": "01234543210",
+        "VALIDADE_CNH": {
+            "VALIDADE": "07/11/2028",
+            "CARTEIRA_STATUS": true
+        },
+        "CATEGORIA_CNH": "B"
+    }
+}
