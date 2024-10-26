@@ -524,7 +524,6 @@ def cadastrar_cliente():
         file.write(obj_json)
 
     print("Cadastrado com sucesso!")
-    menu_cliente()
 
 # Menu do cliente caso deseja fazer login ou cadastrar-se
 def menu_cliente():
@@ -539,6 +538,7 @@ def menu_cliente():
                 print("Logado")
             case 2:
                 cadastrar_cliente()
+                menu_cliente()
                 
             case 3:
                 os.system('cls')
@@ -551,6 +551,108 @@ def menu_cliente():
     except:
         opcao_invalida_principal()
         menu_cliente()
+
+def menu_procurar_cliente():
+    try:
+        opcao = int(input("\n1-Visualizar Cliente\n2-Atualizar Cliente\n3-Deletar Cliente\n4-Voltar ao menu anterior.\n"))
+
+        match opcao:
+            case 1:
+                #inplementar
+                print("Visualizar Cliente")
+                menu_procurar_cliente()
+            case 2:
+                #inplementar
+                print("Atualizar Cliente")
+                menu_procurar_cliente()
+            case 3:
+                #inplementar
+                print("Deletar Cliente")
+                menu_procurar_cliente()
+            case 4:
+                os.system('cls')
+                print("Voltando ao menu anterior!")
+                menu_adm_cliente()
+            case __:
+                opcao_invalida_principal()
+                menu_procurar_cliente()
+    except:
+        opcao_invalida_principal()
+        menu_procurar_cliente()
+
+def menu_adm_cliente():
+    try:
+        opcao = int(input("ADM CLIENTE\n1-Cadastrar Cliente\n2-Procurar Cliente\n3-Voltar ao menu anterior.\n"))
+
+        match opcao:
+            case 1:
+                cadastrar_cliente()
+                menu_adm_cliente()
+            case 2:
+                print("PROCURAR CLIENTE")
+                menu_procurar_cliente()
+            case 3 :
+                os.system('cls')
+                print("Voltando ao menu anterior!")
+                menu_adm()
+            case __:
+                opcao_invalida_principal()
+                menu_adm_cliente() 
+    except:
+        opcao_invalida_principal()
+        menu_adm_cliente
+
+
+
+def menu_adm():
+    try:
+        opcao = int(input("MENU ADMINISTRADOR\n1-Cliente\n2-Carro\n3-Alugar\n4-Voltar ao menu anterior.\n"))
+
+        match opcao:
+            case 1:
+                menu_adm_cliente()
+                menu_adm()
+            case 2:
+                print("MENU CARRO")
+                menu_adm()
+            case 3:
+                print("MENU ALUGAR")
+                menu_adm()
+            case 4 :
+                os.system('cls')
+                print("Voltando ao menu anterior!")
+                main()
+            case __:
+                opcao_invalida_principal()
+                menu_adm() 
+    except:
+        opcao_invalida_principal()
+        menu_adm()
+
+
+def login_adm():
+    print("Login\n")
+    login = input("CPF: ")
+
+    if len(login)==11 and login.isdigit():
+        senha = input("Senha: ")
+
+        if len(senha)==8 and senha.isdigit():
+            with open("adm.json") as file:
+                dados_adm = json.load(file)
+            
+                if dados_adm.get(login) and dados_adm.get(login).get("SENHA") == senha:
+                    print("LOGADO")
+                    menu_adm()
+
+        else:
+            print("Senha invalida!")
+            main()
+
+    
+    else:
+        print("CPF invalido!")
+        main()
 
 
 # Menu Inicial na tela do programa.
@@ -570,6 +672,7 @@ def main():
             case 1:
                 #acessar menu de administradores
                 print("Menu Admin")
+                login_adm()
             case 2:
                 #acessar menu de Clientes
                 os.system('cls')
