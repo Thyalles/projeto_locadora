@@ -19,6 +19,9 @@ def buscar_carro():
                     else:
                         print("Não encontrado, tente novamente")
                         continue
+                case 3:
+                    print("Saindo")
+                    menu_adm()
                 case _:
                     print("Valor invalido, tente novamente")
                     continue    
