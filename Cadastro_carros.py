@@ -1,13 +1,19 @@
 carros={}
 import json
 import re
+arquivo = os.path.join(os.path.dirname(__file__), 'cadastro_dos_carros.json')
 
 
-def menu_cadastro_carros():    
-    print(" Bem Vindo ")
-    print(" Para cadastrar os carros, insira as informações a seguir:  ")
-
+def carregar_carros():
+    # Verifica se o arquivo existe, se não existir, cria um arquivo com lista vazia
+    if not os.path.exists(arquivo):
+        with open(arquivo, 'w') as f:
+            json.dump({}, f, indent=4)
     
+    # Carrega o conteúdo do arquivo
+    with open(arquivo, 'r') as f:
+        return json.load(f)
+
 def preencher_marca_carro():
     global marca_carro
     marca_carro=input("Marca do carro: ")
@@ -344,12 +350,12 @@ def cadastrar_carro():
    
 
 def cadastro_sucesso():             
-                   
-    print("Cadastro feito com sucesso!!")
 
-                       
+    carros=carregar_carros()                   
                        
     carros[placa_carro]={"Marca do carro": marca_carro,"Modelo": modelo_carro, "Ano de fabricação": ano_fabricacao,"Chassi": chassi_carro,"Cor do carro": cor_carro,"Tipo do carro": tipo_carro,"Quilometragem": quilometragem_carro,"Tipo de combustível": combustivel_carro,"Número de portas": numero_portas,"Capacidade": capacidade_carro,"Itens de conforto": itens_carro,"Condição do veículo": condicao_carro,"Tarifa": tarifa_carro}                                                                                                  
                        
-    with open("cadastro_dos_carros.json", 'w' ) as arquivo:
-      json.dump(carros, arquivo, indent=4)
+    with open(arquivo, 'w' ) as f:
+      json.dump(carros, f, indent=4, ensure_ascii=False) 
+
+    print("Cadastro feito com sucesso!!")
