@@ -7,9 +7,9 @@ def menu_carros():
                 case 2: 
                     atualizar_carro()
                 case 3:
-                    vizualizar_carros()
+                    excluir_carro()
                 case 4: 
-                    exlcluir_carro()         
+                    buscar_carro()         
                 case 5:
                     print("Voltando ao menu anterior!")
                     menu_adm()
