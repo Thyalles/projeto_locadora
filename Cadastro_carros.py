@@ -353,7 +353,7 @@ def cadastro_sucesso():
 
     carros=carregar_carros()                   
                        
-    carros[placa_carro]={"Marca do carro": marca_carro,"Modelo": modelo_carro, "Ano de fabricação": ano_fabricacao,"Chassi": chassi_carro,"Cor do carro": cor_carro,"Tipo do carro": tipo_carro,"Quilometragem": quilometragem_carro,"Tipo de combustível": combustivel_carro,"Número de portas": numero_portas,"Capacidade": capacidade_carro,"Itens de conforto": itens_carro,"Condição do veículo": condicao_carro,"Tarifa": tarifa_carro}                                                                                                  
+    carros[placa_carro]={"Marca do carro": marca_carro,"Modelo": modelo_carro, "Ano de fabricacaoo": ano_fabricacao,"Chassi": chassi_carro,"Cor do carro": cor_carro,"Tipo do carro": tipo_carro,"Quilometragem": quilometragem_carro,"Tipo de combustivel": combustivel_carro,"Numero de portas": numero_portas,"Capacidade": capacidade_carro,"Itens de conforto": itens_carro,"Condicao do veiculo": condicao_carro,"Tarifa": tarifa_carro}                                                                                                  
                        
     with open(arquivo, 'w' ) as f:
       json.dump(carros, f, indent=4, ensure_ascii=False) 
