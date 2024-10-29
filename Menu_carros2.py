@@ -1,6 +1,6 @@
 def menu_carros():
     try:
-            opc_menu_carro=int(input("Selecione a opção :\n (1) Cadastrar um carro \n (2) Altualizar \n (3) Ver carros cadastrados \n (4) Exluir carro cadastrado \n (5) Voltar ao menu anterior"))
+            opc_menu_carro=int(input("Selecione a opção :\n (1) Cadastrar um carro \n (2) Altualizar \n (3) Exluir carro cadastrado \n (4) Buscar carro cadastrado \n (5) Voltar ao menu anterior"))
             match opc_menu_carro:
                 case 1: 
                     cadastrar_carro()
