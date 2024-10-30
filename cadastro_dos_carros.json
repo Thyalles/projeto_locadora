@@ -1,0 +1,33 @@
+{
+    "TAS0H12": {
+        "Marca do carro": "Gol",
+        "Modelo": "Bruto",
+        "Ano de fabrica\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdo": "1220",
+        "Chassi": "9BG116GW04C400001",
+        "Cor do carro": "rosa",
+        "Tipo do carro": "Suv",
+        "Quilometragem": 4000,
+        "Tipo de combust\u00ef\u00bf\u00bdvel": "gasolina",
+        "N\u00ef\u00bf\u00bdmero de portas": 2,
+        "Capacidade": 4,
+        "Itens de conforto": "nenhum",
+        "Condi\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdo do ve\u00ef\u00bf\u00bdculo": "novo",
+        "Tarifa": 43.0
+    },
+    "BOS0H12": {
+        "Placa": "BOS0H12",
+        "Marca do carro": "Fiat",
+        "Modelo": "Automatico",
+        "Ano de fabrica\u00e7\u00e3o": "2010",
+        "Chassi": "9BG116GW04C400001",
+        "Cor do carro": "Vermelho",
+        "Tipo do carro": "SUV",
+        "Quilometragem": 2000,
+        "Tipo de combust\u00edvel": "Gas",
+        "N\u00famero de portas": 2,
+        "Capacidade": 4,
+        "Itens de conforto": "Nenhum",
+        "Condi\u00e7\u00e3o do ve\u00edculo": "novo",
+        "Tarifa": 2000.0
+    }
+}
