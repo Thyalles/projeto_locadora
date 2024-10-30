@@ -8,3 +8,8 @@ validar as entradas de endereco{
 
 Endereco - solicitar o CEP e preencher os campos pela biblioteca requests
 
+LOGIN ADM
+LOGIN: 12345678900
+SENHA: 12345678
+
+#CPF E CNH,  NO CADASTRO DE CLIENTE PRECISAM SER VERDADEIRAS PARA SEREM TESTADAS!
