@@ -1,30 +1,58 @@
 {
-    "04842167408": {
-        "NOME": "Thyalles Campos",
-        "DATA_NASCIMENTO": "04/03/1994",
-        "CPF": "09876543211",
-        "RG": "8999777",
-        "NASCIONALIDADE": "BR",
-        "SENHA": "88888888",
+    "1933345681": {
+        "NOME": "bbb",
+        "DATA_NASCIMENTO": "12/12/2000",
+        "CPF": "1933345681",
+        "RG": "12312312",
+        "NASCIONALIDADE": "",
+        "SENHA": "12312312",
         "ENDERECO": {
-            "RUA": "aaaaaaaaaa",
-            "NUMERO": "3333",
+            "RUA": "",
+            "NUMERO": "",
             "COMPLEMENTO": "",
-            "BAIRRO": "cs",
-            "CIDADE": "rec",
-            "ESTADO": "pe",
-            "CEP": "12312323"
+            "BAIRRO": "",
+            "CIDADE": "",
+            "ESTADO": "",
+            "CEP": ""
         },
         "TELEFONE": {
-            "DDD": "333",
-            "CELULAR": "44433322"
+            "DDD": "123",
+            "CELULAR": "12312312"
         },
-        "MAIL": "thy@aaa",
-        "NUMERO_CNH": "01234543210",
+        "MAIL": "",
+        "NUMERO_CNH": "22222233344",
         "VALIDADE_CNH": {
-            "VALIDADE": "07/11/2028",
+            "VALIDADE": "12/12/2030",
             "CARTEIRA_STATUS": true
         },
-        "CATEGORIA_CNH": "B"
+        "CATEGORIA_CNH": "ab"
+    },
+    "55461532145": {
+        "NOME": "socorr",
+        "DATA_NASCIMENTO": "03/04/1994",
+        "CPF": "55461532145",
+        "RG": "111111111",
+        "NASCIONALIDADE": "brasileiro",
+        "SENHA": "11111111",
+        "ENDERECO": {
+            "RUA": "aaaa",
+            "NUMERO": "bbbb",
+            "COMPLEMENTO": "ha",
+            "BAIRRO": "",
+            "CIDADE": "",
+            "ESTADO": "",
+            "CEP": ""
+        },
+        "TELEFONE": {
+            "DDD": "111",
+            "CELULAR": "11111111"
+        },
+        "MAIL": "",
+        "NUMERO_CNH": "57948613200",
+        "VALIDADE_CNH": {
+            "VALIDADE": "10/10/2030",
+            "CARTEIRA_STATUS": true
+        },
+        "CATEGORIA_CNH": "1"
     }
 }
