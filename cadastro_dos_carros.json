@@ -2,15 +2,31 @@
     "GRE0F14": {
         "Marca do carro": "Ford",
         "Modelo": "SUV",
-        "Ano de fabrica\u00e7\u00e3o": "2000",
+        "Ano de fabricação": "2000",
         "Cor do carro": "Azul",
         "Tipo do carro": "automatico",
         "Quilometragem": 0,
-        "Tipo de combust\u00edvel": "Gas",
-        "N\u00famero de portas": 2,
+        "Tipo de combustível": "Gas",
+        "Número de portas": 2,
         "Capacidade": 4,
         "Itens de conforto": "nenhum",
-        "Condi\u00e7\u00e3o do ve\u00edculo": "novo",
+        "Condição do veículo": "novo",
         "Tarifa": 200.0
+    },
+    "ERT7T98": {
+        "Placa": "ERT7T98",
+        "Marca do carro": "Fiat",
+        "Modelo": "Manual",
+        "Ano de fabricação": "2030",
+        "Chassi": "9BG116GW04C400001",
+        "Cor do carro": "PRATA",
+        "Tipo do carro": "conver",
+        "Quilometragem": 0,
+        "Tipo de combustível": "gas",
+        "Número de portas": 3,
+        "Capacidade": 7,
+        "Itens de conforto": "pobre",
+        "Condição do veículo": "usado",
+        "Tarifa": 3000.0
     }
 }
